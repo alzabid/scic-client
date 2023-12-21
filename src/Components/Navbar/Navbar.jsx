@@ -2,18 +2,19 @@ import "../Navbar/Navbar.css";
 import { NavLink } from "react-router-dom";
 import { RiMenuAddLine } from "react-icons/ri";
 import { CgMenuMotion } from "react-icons/cg";
-import {  useState } from "react";
+import {  useContext, useState } from "react";
+import { AuthContext } from "../../Providers/AuthProvider";
 
 
 
 const Navbar = () => {
-  // const { user, logOut } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
   // const [item] = useUser();
   const [click, setClick] = useState(false);
   const handleClick = () => setClick(!click);
 
   return (
-    <nav className="navbar">
+    <nav className="navbar bg-slate-500">
       <div className="nav-container">
         <NavLink exact to="/" className="nav-logo">
           <span className="icon">
@@ -35,7 +36,7 @@ const Navbar = () => {
             </NavLink>
           </li>
 
-          {/* {user && (
+          {user && (
             <>
               <li className="nav-item">
                 <NavLink
@@ -60,7 +61,7 @@ const Navbar = () => {
                 </NavLink>
               </li>
             </>
-          )} */}
+          )}
 
           <li className="nav-item">
             <NavLink
@@ -74,7 +75,7 @@ const Navbar = () => {
             </NavLink>
           </li>
 
-          {/* <li>
+          <li>
             {user && user?.email ? (
               <>
                 <div className="dropdown dropdown-hover dropdown-end">
@@ -83,7 +84,7 @@ const Navbar = () => {
                     className={`avatar ${user ? "online" : "offline"} md:ml-3`}
                   >
                     <div className=" w-12 rounded-full">
-                      <img src={item?.photoURL} />
+                      <img src={user?.photoURL} />
                     </div>
                   </label>
                   <ul
@@ -91,10 +92,10 @@ const Navbar = () => {
                     className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
                   >
                     <li>
-                      <p>{item?.name}</p>
+                      <p>{user?.displayName}</p>
                     </li>
                     <li>
-                      <p>{item?.email}</p>
+                      <p>{user?.email}</p>
                     </li>
                     <li>
                       <a onClick={logOut}>Logout</a>
@@ -117,7 +118,7 @@ const Navbar = () => {
                 </li>
               </>
             )}
-          </li> */}
+          </li>
         </ul>
         <div className="nav-icon" onClick={handleClick}>
           {click ? (

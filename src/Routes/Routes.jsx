@@ -2,6 +2,12 @@ import { createBrowserRouter } from "react-router-dom";
 import MainLayout from "../Layouts/MainLayout";
 import Home from "../Pages/Home";
 import ErrorPage from "../Pages/ErrorPage";
+import Login from "../Pages/Login";
+import Register from "../Pages/Register";
+import Dashboard from "../Pages/Dashboard";
+import MyProfile from "../Pages/MyProfile";
+import TodoList from "../Pages/TodoList";
+import Create from "../Pages/Create";
 
 const Router = createBrowserRouter([
   {
@@ -11,110 +17,79 @@ const Router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Home/>
+        element: <Home />,
       },
-    //   {
-    //     path: "/properties",
-    //     element: (
-    //       <PrivateRoute>
-    //         <Properties></Properties>
-    //       </PrivateRoute>
-    //     ),
-    //   },
-    //   {
-    //     path: "/details/:id",
-    //     element: (
-    //       <PrivateRoute>
-    //         <Details></Details>
-    //       </PrivateRoute>
-    //     ),
-    //   },
-    //   {
-    //     path: "/update/:id",
-    //     element: (
-    //       <PrivateRoute>
-    //         <UpdateProperty />
-    //       </PrivateRoute>
-    //     ),
-    //   },
-    //   {
-    //     path: "makeOffer/:id",
-    //     element: (
-    //       <PrivateRoute>
-    //         <MakeOffer></MakeOffer>
-    //       </PrivateRoute>
-    //     ),
-    //   },
+      //   {
+      //     path: "/properties",
+      //     element: (
+      //       <PrivateRoute>
+      //         <Properties></Properties>
+      //       </PrivateRoute>
+      //     ),
+      //   },
+      //   {
+      //     path: "/details/:id",
+      //     element: (
+      //       <PrivateRoute>
+      //         <Details></Details>
+      //       </PrivateRoute>
+      //     ),
+      //   },
+      //   {
+      //     path: "/update/:id",
+      //     element: (
+      //       <PrivateRoute>
+      //         <UpdateProperty />
+      //       </PrivateRoute>
+      //     ),
+      //   },
+      //   {
+      //     path: "makeOffer/:id",
+      //     element: (
+      //       <PrivateRoute>
+      //         <MakeOffer></MakeOffer>
+      //       </PrivateRoute>
+      //     ),
+      //   },
 
-    //   {
-    //     path: "payment/:id",
-    //     element: <Payment></Payment>,
-    //   },
-    //   {
-    //     path: "login",
-    //     element: <Login></Login>,
-    //   },
-    //   {
-    //     path: "register",
-    //     element: <Register></Register>,
-    //   },
+      //   {
+      //     path: "payment/:id",
+      //     element: <Payment></Payment>,
+      //   },
+      {
+        path: "login",
+        element: <Login />,
+      },
+      {
+        path: "register",
+        element: <Register />,
+      },
+      // {
+      //   path: "dashboard",
+      //   element: <Dashboard/>
+      // },
     ],
   },
 
-//   {
-//     path: "/dashboard",
-//     element: (
-//       <PrivateRoute>
-//         <Dashboard></Dashboard>
-//       </PrivateRoute>
-//     ),
-//     children: [
-//       {
-//         path: "add",
-//         element: <AddProperties></AddProperties>,
-//       },
-//       {
-//         path: "property",
-//         element: <AllProperty></AllProperty>,
-//       },
-//       {
-//         path: "agentproperty",
-//         element: <AgentProperties></AgentProperties>,
-//       },
-//       {
-//         path: "request",
-//         element: <RequestedProperties></RequestedProperties>,
-//       },
+  {
+    path: "/dashboard",
+    element:  <Dashboard />,
+    children: [
 
-//       {
-//         path: "users",
-//         element: <ManageUsers></ManageUsers>,
-//       },
-//       {
-//         path: "profile",
-//         element: <MyProfile></MyProfile>,
-//       },
-//       {
-//         path: "wishlist",
-//         element: <Wishlist></Wishlist>,
-//       },
-//       {
-//         path: "myreviews",
-//         element: <MyReviews></MyReviews>,
-//       },
-//       {
-//         path: "bought",
-//         element: <PorpertyBought></PorpertyBought>,
-//       },
-//       {
-//         path: "allreviews",
-//         element: <ManageReviews></ManageReviews>,
-//       },
-//       // {
-//       //   path: "payment/:id",
-//       //   element: <Payment></Payment>,
-//       // },
-//     ],
-//   },
+      {
+        path: "todo",
+        element: <TodoList/>
+      },
+      {
+        path: "profile",
+        element: <MyProfile/>
+      },
+      {
+        path: "create",
+        element: <Create/>
+      },
+      
+    ],
+  },
 ]);
 export default Router;

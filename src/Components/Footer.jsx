@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="footer bg-slate-200 p-10">
+    <footer className="footer bg-slate-500 p-10">
       <div>
         <div className="flex gap-1 items-end">
           <img className="w-10" src="/img/fav.png" alt="" />
