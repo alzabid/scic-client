@@ -8,6 +8,9 @@ import Dashboard from "../Pages/Dashboard";
 import MyProfile from "../Pages/MyProfile";
 import TodoList from "../Pages/TodoList";
 import Create from "../Pages/Create";
+import PrivateRoute from "../Routes/PrivateRoute";
+import Contact from "../Pages/Contact";
+import About from "../Pages/About";
 
 const Router = createBrowserRouter([
   {
@@ -19,43 +22,22 @@ const Router = createBrowserRouter([
         path: "/",
         element: <Home />,
       },
-      //   {
-      //     path: "/properties",
-      //     element: (
-      //       <PrivateRoute>
-      //         <Properties></Properties>
-      //       </PrivateRoute>
-      //     ),
-      //   },
-      //   {
-      //     path: "/details/:id",
-      //     element: (
-      //       <PrivateRoute>
-      //         <Details></Details>
-      //       </PrivateRoute>
-      //     ),
-      //   },
-      //   {
-      //     path: "/update/:id",
-      //     element: (
-      //       <PrivateRoute>
-      //         <UpdateProperty />
-      //       </PrivateRoute>
-      //     ),
-      //   },
-      //   {
-      //     path: "makeOffer/:id",
-      //     element: (
-      //       <PrivateRoute>
-      //         <MakeOffer></MakeOffer>
-      //       </PrivateRoute>
-      //     ),
-      //   },
-
-      //   {
-      //     path: "payment/:id",
-      //     element: <Payment></Payment>,
-      //   },
+      {
+        path: "/contact",
+        element: (
+          <PrivateRoute>
+            <Contact />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/about",
+        element: (
+          <PrivateRoute>
+            <About/>
+          </PrivateRoute>
+        ),
+      },
       {
         path: "login",
         element: <Login />,
@@ -64,31 +46,29 @@ const Router = createBrowserRouter([
         path: "register",
         element: <Register />,
       },
-      // {
-      //   path: "dashboard",
-      //   element: <Dashboard/>
-      // },
     ],
   },
 
   {
     path: "/dashboard",
-    element:  <Dashboard />,
+    element: (
+      <PrivateRoute>
+        <Dashboard />
+      </PrivateRoute>
+    ),
     children: [
-
       {
         path: "todo",
-        element: <TodoList/>
+        element: <TodoList />,
       },
       {
         path: "profile",
-        element: <MyProfile/>
+        element: <MyProfile />,
       },
       {
         path: "create",
-        element: <Create/>
+        element: <Create />,
       },
-      
     ],
   },
 ]);

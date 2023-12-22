@@ -1,7 +1,8 @@
-import { RiMenuAddLine } from "react-icons/ri";
+import { FaRegUser } from "react-icons/fa";
+import { RiMenuAddLine, RiTodoLine } from "react-icons/ri";
 import { Link, Outlet } from "react-router-dom";
-
-
+import { IoMdExit } from "react-icons/io";
+import { MdAddToPhotos } from "react-icons/md"; 
 
 const Dashboard = () => {
   return (
@@ -21,20 +22,32 @@ const Dashboard = () => {
           aria-label="close sidebar"
           className="drawer-overlay"
         ></label>
-        <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
-          {/* Sidebar content here */}
+        <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content text-xl">
+          {/* Sidebar here */}
           <li>
-            <Link to="/dashboard/profile">Profile</Link>
+            <Link to="/dashboard/profile">
+              <FaRegUser />
+              Profile
+            </Link>
           </li>
           <li>
-            <Link to="/dashboard/create">Create Task</Link>
+            <Link to="/dashboard/create">
+              <MdAddToPhotos />
+              Create Task
+            </Link>
           </li>
           <li>
-            <Link to="/dashboard/todo">Todo List</Link>
+            <Link to="/dashboard/todo">
+              <RiTodoLine />
+              Todo List
+            </Link>
           </li>
           <div className="divider "></div>
           <li>
-            <Link to="/"> Exit</Link>
+            <Link to="/">
+              <IoMdExit />
+              Bact to Home
+            </Link>
           </li>
         </ul>
       </div>

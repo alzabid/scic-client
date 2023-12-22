@@ -9,18 +9,17 @@ import { AuthContext } from "../../Providers/AuthProvider";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
-  // const [item] = useUser();
   const [click, setClick] = useState(false);
   const handleClick = () => setClick(!click);
 
   return (
-    <nav className="navbar bg-slate-500">
+    <nav className="navbar bg-slate-400">
       <div className="nav-container">
         <NavLink exact to="/" className="nav-logo">
           <span className="icon">
-            <img src="/img/fav.png" alt="" />
+            <img src="/fav.png" alt="" />
           </span>
-          <span>Real Estate</span>
+          <span>TaskMaster Pro</span>
         </NavLink>
 
         <ul className={click ? "nav-menu active" : "nav-menu"}>
@@ -41,12 +40,23 @@ const Navbar = () => {
               <li className="nav-item">
                 <NavLink
                   exact
-                  to="/properties"
+                  to="/contact"
                   activeClassName="active"
                   className="nav-links"
                   onClick={handleClick}
                 >
-                  Properties
+                  Contacts
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink
+                  exact
+                  to="/about"
+                  activeClassName="active"
+                  className="nav-links"
+                  onClick={handleClick}
+                >
+                  About
                 </NavLink>
               </li>
               <li className="nav-item">

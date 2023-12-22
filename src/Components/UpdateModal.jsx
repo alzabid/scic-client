@@ -1,46 +1,64 @@
 /* eslint-disable react/prop-types */
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
-import Swal from "sweetalert2";
 import { AuthContext } from "../Providers/AuthProvider";
 import useAxios from "../Hooks/useAxios";
+import Swal from "sweetalert2";
+import { useParams } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 
-const Create = () => {
-  const { user } = useContext(AuthContext);
+const UpdateModal = ({ _id }) => {
+    console.log(_id);
+//   const { user } = useContext(AuthContext);
   const axios = useAxios();
-  const { register, handleSubmit, reset } = useForm();
+//   const { id } = useParams();
+  const { register, handleSubmit, } = useForm();
 
-  const onSubmit = (data) => {
-    const taskInfo = {
-      email: user?.email,
-      name: user?.displayName,
-      photoURL: user?.photoURL,
-      title: data.title,
-      description: data.description,
-      deadline: data.deadline,
-      priority: data.priority,
-      status:"Todo",
-    };
-    axios.post("/task", taskInfo).then((res) => {
-      console.log(res.data);
-      reset();
+  const { data: tasks = [] } = useQuery({
+    queryKey: ["tasks", _id],
+    queryFn: async () => {
+      const res = await axios.get(`/tasks/${_id}`);
+      return res.data;
+    },
+  });
 
-      Swal.fire({
-        position: "center",
-        icon: "success",
-        title: "You successfully added task !",
-        showConfirmButton: false,
-        timer: 1500,
-      });
-    });
+  console.log(tasks);
+
+  const { title, description, deadline, priority } = tasks;
+
+    const onSubmit = (data) => {
+      console.log(data);
+    // const taskInfo = {
+    //   email: user?.email,
+    //   name: user?.displayName,
+    //   photoURL: user?.photoURL,
+    //   title: data.title,
+    //   description: data.description,
+    //   deadline: data.deadline,
+    //   priority: data.priority,
+    // };
+    // axios.put("/task", taskInfo).then((res) => {
+    //   console.log(res.data);
+    //   reset();
+
+    //   Swal.fire({
+    //     position: "center",
+    //     icon: "success",
+    //     title: "You successfully updated task !",
+    //     showConfirmButton: false,
+    //     timer: 1500,
+    //   });
+    // });
   };
   return (
     <div>
-      <div className="flex flex-col justify-between items-center gap-5 pt-8 ">
-        <form
-          onSubmit={handleSubmit(onSubmit)}
-          className="flex flex-col  gap-5 p-5 backdrop-blur-sm bg-white bg-opacity-30 shadow-lg rounded-lg"
-        >
+      <div className="modal-box">
+        <form method="dialog">
+          <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+            ✕
+          </button>
+        </form>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <div className="form-control">
             <label className="label">
               <span className="label-text">Task Title</span>
@@ -48,7 +66,7 @@ const Create = () => {
 
             <input
               type="text"
-              placeholder="Task Title"
+              defaultValue={title}
               className="input input-bordered w-full"
               {...register("title", { required: true })}
             />
@@ -60,7 +78,7 @@ const Create = () => {
 
             <input
               type="text"
-              placeholder="Task Description"
+              defaultValue={description}
               className="input input-bordered w-full"
               {...register("description", { required: true })}
             />
@@ -72,7 +90,7 @@ const Create = () => {
 
             <input
               type="date"
-              placeholder="Task Deadline"
+              defaultValue={deadline}
               className="input input-bordered w-full"
               {...register("deadline", { required: true })}
             />
@@ -84,6 +102,7 @@ const Create = () => {
 
             <select
               className="select select-bordered w-full max-w-xs"
+              defaultValue={priority}
               {...register("priority")}
             >
               <option value="Low">Low</option>
@@ -91,8 +110,8 @@ const Create = () => {
               <option value="High">High</option>
             </select>
           </div>
-          <button className="btn btn-info" type="submit">
-            Add Task
+          <button className="btn btn-info w-full mt-4" type="submit">
+            Update Task
           </button>
         </form>
       </div>
@@ -100,4 +119,4 @@ const Create = () => {
   );
 };
 
-export default Create;
+export default UpdateModal;
